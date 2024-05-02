@@ -13,10 +13,10 @@ puts "This program wil ltake input from the user and compare the password"
 puts "If password is correct, you will get back the user object"
 
 attemps = 1
-MAX_ATTEMPS = 4
+$MAX_ATTEMPS = 4
 
-def authenticate_process(username, password)
-    if $users.include?({username: username, password: password})
+def authenticate_process(username, password, list_of_users)
+    if list_of_users.include?({username: username, password: password})
         {username: username, password: password}
     else
         nil
@@ -25,38 +25,27 @@ end
 
 user_input = ""
 
-# while attemps <= MAX_ATTEMPS && user_input != "n"
-#     print "Username: "
-#     user_name = gets.chomp.downcase
-#     print "Password: "
-#     pass_word = gets.chomp.downcase
-
-#     can_login_in = authenticate_process(user_name,pass_word)
-#     if !can_login_in.nil?
-#         puts can_login_in
-#     else
-#         puts "Don't have access please try again"
-#     end
-#     puts "Press n to quit or any other key to continue: "
-#     user_input = gets.chomp.downcase
-# end
-
-while attemps <= MAX_ATTEMPS && user_input != "n"
+while true
     print "Username: "
     user_name = gets.chomp.downcase
     print "Password: "
     pass_word = gets.chomp.downcase
 
-    users.each {
-        |user|
-        if user[:username] == user_name && user[:password] == pass_word
-            puts user
-        else
-            puts "Credentials invalid"
-            break
-        end
-    }
-
+    can_login_in = authenticate_process(user_name,pass_word, users)
+    if !can_login_in.nil?
+        puts can_login_in
+    else
+        puts "Don't have access please try again"
+    end
     puts "Press n to quit or any other key to continue: "
     user_input = gets.chomp.downcase
+    if user_input == "n"
+        break
+    end
+    attemps = attemps + 1
+
+    if attemps > $MAX_ATTEMPS
+        puts "Exceed attemps"
+        break
+    end
 end
