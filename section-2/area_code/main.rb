@@ -12,12 +12,12 @@ dial_book = {
   }
 
 def get_city_names(somehash)
-    somehash.keys()
+    somehash.keys
 end
 
 def get_area_code(somehash, key)
-    if !(somehash[key]).nil?
-        return somehash[key]
+    if somehash.include?(key)
+        return "The area code for #{key} is #{somehash[key]}"
     end
     "Not a valid city"
 end
