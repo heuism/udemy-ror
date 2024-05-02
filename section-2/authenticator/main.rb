@@ -1,4 +1,4 @@
-$users = [
+users = [
     {username: "hientran", password: "password1"},
     {username: "grace", password: "password2"},
     {username: "andrewpham", password: "password3"},
@@ -25,18 +25,38 @@ end
 
 user_input = ""
 
+# while attemps <= MAX_ATTEMPS && user_input != "n"
+#     print "Username: "
+#     user_name = gets.chomp.downcase
+#     print "Password: "
+#     pass_word = gets.chomp.downcase
+
+#     can_login_in = authenticate_process(user_name,pass_word)
+#     if !can_login_in.nil?
+#         puts can_login_in
+#     else
+#         puts "Don't have access please try again"
+#     end
+#     puts "Press n to quit or any other key to continue: "
+#     user_input = gets.chomp.downcase
+# end
+
 while attemps <= MAX_ATTEMPS && user_input != "n"
     print "Username: "
     user_name = gets.chomp.downcase
     print "Password: "
     pass_word = gets.chomp.downcase
 
-    can_login_in = authenticate_process(user_name,pass_word)
-    if !can_login_in.nil?
-        puts can_login_in
-    else
-        puts "Don't have access please try again"
-    end
+    users.each {
+        |user|
+        if user[:username] == user_name && user[:password] == pass_word
+            puts user
+        else
+            puts "Credentials invalid"
+            break
+        end
+    }
+
     puts "Press n to quit or any other key to continue: "
     user_input = gets.chomp.downcase
 end
