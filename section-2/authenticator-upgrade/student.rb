@@ -1,13 +1,17 @@
-class Student
+require_relative 'crud'
 
+class Student
+    include Crud
     # new way
-    attr_accessor :first_name, :last_name, :email, :username
+    attr_accessor :first_name, :last_name, :email, :username, :password
     attr_reader :password
 
-    def initialize(first_name, last_name, email)
+    def initialize(first_name, last_name, email, username, password)
       @first_name = first_name
       @last_name = last_name
       @email = email
+      @username = username
+      @password = Crud.create_hash_digest(password) # using this to automatically generate a hash from user creation
     end
 
     # old way
@@ -29,7 +33,6 @@ class Student
     end
 end
 
-hien = Student.new("Hien", "Tran", "htran@eastern.edu.au")
-damien = Student.new("Damien", "Kunckey", "dknucky@mst.edu.au")
-puts hien
-puts damien
+hien = Student.new("Hien", "Tran", "htran@eastern.edu.au", "hientranEastern", "password1")
+p hien
+
