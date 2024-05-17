@@ -1,4 +1,7 @@
 HelloWorld::Application.routes.draw do
+  resources :articles
+
+
   resources :pages
 
 
