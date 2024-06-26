@@ -26,10 +26,10 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @article }
-    end
+    # respond_to do |format|
+    #   format.html # new.html.erb
+    #   format.json { render json: @article }
+    # end
   end
 
   # GET /articles/1/edit
