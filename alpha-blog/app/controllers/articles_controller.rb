@@ -40,17 +40,18 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.new(params[:article])
+    render json: params[:article]
+    # @article = Article.new(params[:article])
 
-    respond_to do |format|
-      if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
-        format.json { render json: @article, status: :created, location: @article }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @article.save
+    #     format.html { redirect_to @article, notice: 'Article was successfully created.' }
+    #     format.json { render json: @article, status: :created, location: @article }
+    #   else
+    #     format.html { render action: "new" }
+    #     format.json { render json: @article.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PUT /articles/1
